@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.example.duoreadmastermemorypoli.InicioVistaController">
+  <!--
+      <stylesheets>
+          <String fx:value="@/resources/iniciovista.css" />
+      </stylesheets>
+      -->
+  <children>
+    <Label fx:id="title" alignment="BASELINE_CENTER" layoutX="209.0" layoutY="72.0" prefHeight="75.0" prefWidth="381.0" styleClass="label-title" text="DUO READ (MASTER MEMORY)" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold Italic" size="20.0" />
+      </font>
+    </Label>
+    <Button fx:id="btnIniciar" cancelButton="false" defaultButton="true" layoutX="291.0" layoutY="292.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="58.0" prefWidth="217.0" styleClass="button" text="Iniciar Juego" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold Italic" size="15.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="btnSalir" cancelButton="false" defaultButton="false" disable="false" font="$x1" layoutX="291.0" layoutY="399.0" mnemonicParsing="false" onAction="#salirJuego" prefHeight="58.0" prefWidth="217.0" styleClass="button" text="Salir" textAlignment="CENTER" textFill="#ff3333" underline="false" wrapText="false" />
+  </children>
+</AnchorPane>
