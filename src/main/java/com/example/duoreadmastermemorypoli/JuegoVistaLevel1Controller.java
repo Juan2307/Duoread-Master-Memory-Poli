@@ -2,6 +2,7 @@ package com.example.duoreadmastermemorypoli;
 
 import javafx.animation.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +40,7 @@ public class JuegoVistaLevel1Controller extends Application {
     public int parejasRestantes;
     public boolean enProcesoDeComparacion = false;
 
-    @FXML
+    @FXML/**/
     public Label lblTiempo;
 
     @FXML
@@ -69,6 +70,9 @@ public class JuegoVistaLevel1Controller extends Application {
     @FXML
     public Font x1;
 
+    @FXML
+    private Pane rootPane;
+
     //endregion
 
     //region Metodos Publicos
@@ -85,23 +89,13 @@ public class JuegoVistaLevel1Controller extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/duoreadmastermemorypoli/JuegoVistaLevel1.fxml"));
-            Pane root = loader.load();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     @FXML
     public void volverLobby(ActionEvent event) {
+
         try {
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Lobby");
             alert.setHeaderText("¿Desea volver al lobby?");
@@ -122,50 +116,60 @@ public class JuegoVistaLevel1Controller extends Application {
                 stage.show();
 
             }
-        } catch (IOException ex) {
+
+        }
+        catch (IOException ex) {
             System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
             ex.printStackTrace();
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             System.err.println("Error inesperado: " + ex.getMessage());
             ex.printStackTrace();
         }
+
     }
 
     @FXML
     public void reiniciarJuego(ActionEvent event) {
-        try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel1.fxml"));
-            Pane ventana = fxmlLoader.load();
-            Scene scene = new Scene(ventana);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel1.fxml"));
+                Pane ventana = fxmlLoader.load();
+                Scene scene = new Scene(ventana);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
+                ex.printStackTrace();
+            } catch (Exception ex) {
+                System.err.println("Error inesperado: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        });
 
-        } catch (IOException ex) {
-            System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
-            ex.printStackTrace();
-        } catch (Exception ex) {
-            System.err.println("Error inesperado: " + ex.getMessage());
-            ex.printStackTrace();
-        }
     }
 
     @FXML
     public void irASiguienteNivel(ActionEvent event) {
 
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel2.fxml"));
-            Pane ventana = fxmlLoader.load();
-            Scene scene = new Scene(ventana);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel2.fxml"));
+                Pane ventana = fxmlLoader.load();
+                Scene scene = new Scene(ventana);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
+                ex.printStackTrace();
+            } catch (Exception ex) {
+                System.err.println("Error inesperado: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        });
 
     }
 

@@ -16,7 +16,21 @@ import java.util.Optional;
 
 public class InicioVistaController extends Application {
 
-    //region Metodos Publicos
+    //region Campos Privados
+
+    private Alert alert;
+
+    //endregion
+
+    //region Constructor
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
+    }
+
+    //endregion
+
+    //region Métodos Públicos
 
     public static void main(String[] args) {
         launch(args);
@@ -24,18 +38,6 @@ public class InicioVistaController extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/duoreadmastermemorypoli/InicioVista.fxml"));
-            Pane root = loader.load();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -54,26 +56,31 @@ public class InicioVistaController extends Application {
 
     @FXML
     public void salirJuego(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Salir");
-        alert.setHeaderText("¿Desea salir del juego?");
+        if (alert != null) { // Verifica que el Alert esté configurado
+            alert.setTitle("Salir");
+            alert.setHeaderText("¿Desea salir del juego?");
 
-        ButtonType buttonTypeYes = new ButtonType("Sí");
-        ButtonType buttonTypeNo = new ButtonType("No");
+            ButtonType buttonTypeYes = new ButtonType("Sí");
+            ButtonType buttonTypeNo = new ButtonType("No");
 
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage.close();
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == buttonTypeYes) {
+                Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                stage.close();
+            }
+        } else {
+            // Manejo alternativo si el Alert no está configurado
+            System.out.println("Alert no configurado.");
         }
     }
 
     //endregion
 
-    //region Metodos Privados
+    //region Métodos Privados
 
     //endregion
 
 }
+

@@ -69,6 +69,9 @@ public class JuegoVistaLevel3Controller extends Application {
     @FXML
     private Font x1;
 
+    @FXML
+    private Pane rootPane;
+
     //endregion
 
     //region Metodos Publicos
@@ -97,6 +100,10 @@ public class JuegoVistaLevel3Controller extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public Scene getScene() {
+        return rootPane.getScene();
     }
 
     //endregion
@@ -395,6 +402,8 @@ public class JuegoVistaLevel3Controller extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VistaFinal.fxml"));
             Pane ventana = fxmlLoader.load();
             Scene scene = new Scene(ventana);
+
+            // Obtener el Stage principal desde el botón que disparó el evento
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
