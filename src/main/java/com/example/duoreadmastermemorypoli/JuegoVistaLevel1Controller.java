@@ -70,16 +70,10 @@ public class JuegoVistaLevel1Controller extends Application {
     @FXML
     public Font x1;
 
-    @FXML
-    private Pane rootPane;
 
     //endregion
 
     //region Metodos Publicos
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 
     public void initialize() {
         iniciarTimerPreJuego();
@@ -94,38 +88,40 @@ public class JuegoVistaLevel1Controller extends Application {
     @FXML
     public void volverLobby(ActionEvent event) {
 
-        try {
+        Platform.runLater(() -> {
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Lobby");
-            alert.setHeaderText("¿Desea volver al lobby?");
+            try {
 
-            ButtonType buttonTypeYes = new ButtonType("Sí");
-            ButtonType buttonTypeNo = new ButtonType("No");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Lobby");
+                alert.setHeaderText("¿Desea volver al lobby?");
 
-            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+                ButtonType buttonTypeYes = new ButtonType("Sí");
+                ButtonType buttonTypeNo = new ButtonType("No");
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == buttonTypeYes) {
+                alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InicioVista.fxml"));
-                Pane ventana = fxmlLoader.load();
-                Scene scene = new Scene(ventana);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == buttonTypeYes) {
 
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InicioVista.fxml"));
+                    Pane ventana = fxmlLoader.load();
+                    Scene scene = new Scene(ventana);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+
+                }
+
+            } catch (IOException ex) {
+                System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
+                ex.printStackTrace();
+            } catch (Exception ex) {
+                System.err.println("Error inesperado: " + ex.getMessage());
+                ex.printStackTrace();
             }
 
-        }
-        catch (IOException ex) {
-            System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-        catch (Exception ex) {
-            System.err.println("Error inesperado: " + ex.getMessage());
-            ex.printStackTrace();
-        }
+        });
 
     }
 
@@ -156,6 +152,7 @@ public class JuegoVistaLevel1Controller extends Application {
 
         Platform.runLater(() -> {
             try {
+
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel2.fxml"));
                 Pane ventana = fxmlLoader.load();
                 Scene scene = new Scene(ventana);
@@ -177,7 +174,7 @@ public class JuegoVistaLevel1Controller extends Application {
 
     //region Metodos Privados
 
-    private void iniciarTimerPreJuego() {
+    void iniciarTimerPreJuego() {
 
         lblTitulo.setText("NIVEL 1");
         tiempoRestante = 4;

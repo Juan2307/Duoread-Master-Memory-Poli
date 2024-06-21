@@ -1,14 +1,9 @@
 package com.example.duoreadmastermemorypoli;
 
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,14 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import java.util.Optional;
-
-import static com.sun.java.accessibility.util.EventQueueMonitor.getTopLevelWindows;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
+class JuegoVistaLevel2ControllerTest extends ApplicationTest {
 
-    private JuegoVistaLevel1Controller controller;
+    private JuegoVistaLevel2Controller controller;
     private Stage stage;
 
     @Override
@@ -31,7 +23,7 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
 
         this.stage = stage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/duoreadmastermemorypoli/JuegoVistaLevel1.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/duoreadmastermemorypoli/JuegoVistaLevel2.fxml"));
         Pane root = fxmlLoader.load();
         controller = fxmlLoader.getController();
 
@@ -55,13 +47,15 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testInitializeMethod() {
+    void initialize() {
+
         // Verificar que initialize no lance excepciones
         assertDoesNotThrow(() -> controller.initialize());
+
     }
 
     @Test
-    public void testStartMethod() {
+    void start() {
 
         controller.start(stage);
 
@@ -72,7 +66,7 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testIrALobby() {
+    void volverLobby() {
 
         // Simula hacer clic en el botón para ir al lobby
         clickOn("#btnLobby");
@@ -91,7 +85,7 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testReiniciarJuego() {
+    void reiniciarJuego() {
 
         clickOn("#btnReiniciar");
 
@@ -102,7 +96,7 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testirASiguienteNivel() {
+    void irASiguienteNivel() {
 
         controller.btnSiguienteNivel.setVisible(true);
         clickOn("#btnSiguienteNivel");
@@ -114,5 +108,3 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     }
 
 }
-
-

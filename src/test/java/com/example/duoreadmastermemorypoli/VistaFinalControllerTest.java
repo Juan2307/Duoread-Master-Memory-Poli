@@ -1,14 +1,9 @@
 package com.example.duoreadmastermemorypoli;
 
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,14 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import java.util.Optional;
-
-import static com.sun.java.accessibility.util.EventQueueMonitor.getTopLevelWindows;
+import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
+class VistaFinalControllerTest extends ApplicationTest {
 
-    private JuegoVistaLevel1Controller controller;
+    private VistaFinalController controller;
     private Stage stage;
 
     @Override
@@ -31,7 +24,7 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
 
         this.stage = stage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/duoreadmastermemorypoli/JuegoVistaLevel1.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/duoreadmastermemorypoli/VistaFinal.fxml"));
         Pane root = fxmlLoader.load();
         controller = fxmlLoader.getController();
 
@@ -47,17 +40,6 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     @BeforeEach
     public void setUp() {
 
-        assertNotNull(controller.btnReiniciar);
-        assertNotNull(controller.btnSiguienteNivel);
-        assertNotNull(controller.btnIrLobby);
-        //assertNotNull(controller.btnLobby);
-
-    }
-
-    @Test
-    public void testInitializeMethod() {
-        // Verificar que initialize no lance excepciones
-        assertDoesNotThrow(() -> controller.initialize());
     }
 
     @Test
@@ -72,10 +54,10 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testIrALobby() {
+    void salirJuego() {
 
         // Simula hacer clic en el botón para ir al lobby
-        clickOn("#btnLobby");
+        clickOn("#btnSalir");
 
         // Esperar un breve período de tiempo para que la nueva escena se cargue completamente
         sleep(1000); // Esperar 1 segundo (ajustar según sea necesario)
@@ -90,29 +72,4 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
 
     }
 
-    @Test
-    public void testReiniciarJuego() {
-
-        clickOn("#btnReiniciar");
-
-        // Verifica que la nueva escena está configurada correctamente
-        Node root = stage.getScene().getRoot();
-        assertNotNull(root);
-
-    }
-
-    @Test
-    public void testirASiguienteNivel() {
-
-        controller.btnSiguienteNivel.setVisible(true);
-        clickOn("#btnSiguienteNivel");
-
-        // Verificar que la nueva escena está configurada correctamente
-        Node root = stage.getScene().getRoot();
-        assertNotNull(root);
-
-    }
-
 }
-
-
