@@ -1,14 +1,9 @@
 package com.example.duoreadmastermemorypoli;
 
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,9 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import java.util.Optional;
-
-import static com.sun.java.accessibility.util.EventQueueMonitor.getTopLevelWindows;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
