@@ -7,6 +7,7 @@
  * y exporta los paquetes relevantes.
  */
 module com.example.duoreadmastermemorypoli {
+
     // Requiere el módulo de controles de JavaFX para la interfaz gráfica de usuario
     requires javafx.controls;
 

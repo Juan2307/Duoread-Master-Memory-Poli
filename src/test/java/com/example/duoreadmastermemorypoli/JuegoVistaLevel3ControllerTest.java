@@ -6,8 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -19,8 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class JuegoVistaLevel3ControllerTest extends ApplicationTest {
 
+    //region Campos Privados
+
     private JuegoVistaLevel3Controller controller;
     private Stage stage;
+
+    //endregion
+
+    //region Configuración de Prueba y Métodos de Ciclo de Vida
 
     /**
      * Método de inicio para configurar la escena de prueba.
@@ -55,6 +60,10 @@ class JuegoVistaLevel3ControllerTest extends ApplicationTest {
         assertNotNull(controller.btnIrLobby);
         // assertNotNull(controller.btnLobby); // Este botón está comentado porque no se usa actualmente en las pruebas
     }
+
+    //endregion
+
+    //region Metodos Publicos Test
 
     /**
      * Prueba unitaria para el método initialize() del controlador del nivel 3.
@@ -128,5 +137,7 @@ class JuegoVistaLevel3ControllerTest extends ApplicationTest {
         Node root = stage.getScene().getRoot();
         assertNotNull(root);
     }
+
+    //endregion
 
 }

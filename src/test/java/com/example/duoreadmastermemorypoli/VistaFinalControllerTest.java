@@ -6,8 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -19,8 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class VistaFinalControllerTest extends ApplicationTest {
 
+    //region Campos Privados
+
     private VistaFinalController controller;
     private Stage stage;
+
+    //endregion
+
+    //region Configuración de Prueba y Métodos de Ciclo de Vida
 
     /**
      * Método de inicio para configurar la escena de prueba.
@@ -52,6 +57,10 @@ class VistaFinalControllerTest extends ApplicationTest {
     public void setUp() {
         // No se requiere configuración previa para esta prueba
     }
+
+    //endregion
+
+    //region Metodos Publicos Test
 
     /**
      * Prueba unitaria para el método start() del controlador de la vista final.
@@ -86,5 +95,7 @@ class VistaFinalControllerTest extends ApplicationTest {
         Node root = stage.getScene().getRoot();
         assertNotNull(root);
     }
+
+    //endregion
 
 }

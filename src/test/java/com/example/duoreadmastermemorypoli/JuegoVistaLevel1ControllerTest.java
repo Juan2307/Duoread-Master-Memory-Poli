@@ -6,8 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -19,12 +18,19 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
 
+    //region Campos Privados
+
     private JuegoVistaLevel1Controller controller;
     private Stage stage;
+
+    //endregion
+
+    //region Configuración de Prueba y Métodos de Ciclo de Vida
 
     /**
      * Método de inicio para configurar la escena de prueba.
      * Carga el archivo FXML y establece la escena en el stage para las pruebas.
+     *
      * @param stage El stage sobre el cual se establecerá la escena.
      * @throws Exception Si ocurre algún error durante la carga del archivo FXML.
      */
@@ -55,6 +61,10 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
         assertNotNull(controller.btnIrLobby);
         // assertNotNull(controller.btnLobby); // Este botón está comentado porque no se usa actualmente en las pruebas
     }
+
+    //endregion
+
+    //region Metodos Publicos Test
 
     /**
      * Prueba unitaria para el método initialize() del controlador del nivel 1.
@@ -128,6 +138,8 @@ public class JuegoVistaLevel1ControllerTest extends ApplicationTest {
         Node root = stage.getScene().getRoot();
         assertNotNull(root);
     }
+
+    //endregion
 
 }
 
