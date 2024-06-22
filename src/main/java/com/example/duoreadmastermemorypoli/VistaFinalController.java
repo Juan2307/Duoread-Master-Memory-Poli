@@ -26,22 +26,47 @@ import java.util.ResourceBundle;
  */
 public class VistaFinalController extends Application {
 
+    //region Constructor
+
+    /**
+     * Constructor del controlador VistaFinalController
+     */
+    public VistaFinalController() {
+    }
+
+    //endregion
+
     //region Campos Privados
 
+    /**
+     * Etiqueta para mostrar el título del nivel
+     */
     @FXML
-    public Label title; // Etiqueta para mostrar el título del nivel
+    public Label title;
 
+    /**
+     * Fuente (no usada explícitamente en el código proporcionado)
+     */
     @FXML
-    public Font x2; // Fuente (no usada explícitamente en el código proporcionado)
+    public Font x2;
 
+    /**
+     * Botón para salir del juego
+     */
     @FXML
-    private Button btnSalir; // Botón para salir del juego
+    private Button btnSalir;
 
+    /**
+     * Fuente (no usada explícitamente en el código proporcionado)
+     */
     @FXML
-    public Font x1; // Fuente (no usada explícitamente en el código proporcionado)
+    public Font x1;
 
+    /**
+     *  Etiqueta para mostrar el mesaje de felicitaciones
+     */
     @FXML
-    public Label title1; // Etiqueta para mostrar el mesaje de felicitaciones
+    public Label title1;
 
     //endregion
 

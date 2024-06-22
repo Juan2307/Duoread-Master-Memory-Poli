@@ -34,45 +34,112 @@ import java.util.logging.Logger;
  */
 public class JuegoVistaLevel1Controller extends Application {
 
+    //region Constructor
+
+    /**
+     * Constructor del controlador JuegoVistaLevel1Controller
+     */
+    public JuegoVistaLevel1Controller() {
+    }
+
+    //endregion
+
     //region Campos Privados y Publicos
 
-    public Timeline timeline; // Línea de tiempo para el temporizador del juego
-    public int tiempoRestante; // Tiempo restante en el temporizador
-    public List<String> imagenes; // Lista de rutas de las imágenes de las cartas
-    public List<Button> botonesCartas; // Lista de botones que representan las cartas
-    public List<Button> cartasVolteadas; // Lista de cartas que están volteadas actualmente
-    public int parejasRestantes; // Número de parejas restantes para completar el nivel
-    public boolean enProcesoDeComparacion = false; // Indicador de si hay una comparación en proceso
+    /**
+     * Línea de tiempo para el temporizador del juego
+     */
+    public Timeline timeline;
 
-    @FXML
-    public Label lblTiempo; // Etiqueta para mostrar el tiempo restante
+    /**
+     * Tiempo restante en el temporizador
+     */
+    public int tiempoRestante;
 
-    @FXML
-    public GridPane gridCartas; // GridPane que contiene las cartas
+    /**
+     * Lista de rutas de las imágenes de las cartas
+     */
+    public List<String> imagenes;
 
-    @FXML
-    public Pane paneMensaje; // Pane para mostrar mensajes al jugador
+    /**
+     * Lista de cartas que están volteadas actualmente
+     */
+    public List<Button> cartasVolteadas;
 
-    @FXML
-    public Label lblMensaje; // Etiqueta para mostrar mensajes al jugador
+    /**
+     * Lista de botones que representan las cartas
+     */
+    public List<Button> botonesCartas;
 
-    @FXML
-    public Button btnReiniciar; // Botón para reiniciar el juego
+    /**
+     * Número de parejas restantes para completar el nivel
+     */
+    public int parejasRestantes;
 
-    @FXML
-    public Button btnIrLobby; // Botón para volver al lobby
+    /**
+     * Indicador de si hay una comparación en proceso
+     */
+    public boolean enProcesoDeComparacion = false;
 
+    /**
+     * Etiqueta para mostrar el tiempo restante
+     */
     @FXML
-    public Button btnLobby; // Otro botón para volver al lobby (posiblemente redundante)
+    public Label lblTiempo;
 
+    /**
+     * Pane para mostrar mensajes al jugador
+     */
     @FXML
-    public Button btnSiguienteNivel; // Botón para ir al siguiente nivel
+    public GridPane gridCartas;
 
+    /**
+     * Pane para mostrar mensajes al jugador
+     */
     @FXML
-    public Label lblTitulo; // Etiqueta para mostrar el título del nivel
+    public Pane paneMensaje;
 
+    /**
+     *  Etiqueta para mostrar mensajes al jugador
+     */
     @FXML
-    public Font x1; // Fuente (no usada explícitamente en el código proporcionado)
+    public Label lblMensaje;
+
+    /**
+     *  Botón para reiniciar el juego
+     */
+    @FXML
+    public Button btnReiniciar;
+
+    /**
+     * Botón para volver al lobby
+     */
+    @FXML
+    public Button btnIrLobby;
+
+    /**
+     *   Otro botón para volver al lobby (posiblemente redundante)
+     */
+    @FXML
+    public Button btnLobby;
+
+    /**
+     *  Botón para reiniciar el juego
+     */
+    @FXML
+    public Button btnSiguienteNivel;
+
+    /**
+     * Etiqueta para mostrar el título del nivel
+     */
+    @FXML
+    public Label lblTitulo;
+
+    /**
+     * Fuente (no usada explícitamente en el código proporcionado)
+     */
+    @FXML
+    public Font x1;
 
     //endregion
 

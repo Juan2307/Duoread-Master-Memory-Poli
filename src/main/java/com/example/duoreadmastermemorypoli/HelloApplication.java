@@ -14,7 +14,17 @@ import java.io.IOException;
  */
 public class HelloApplication extends Application {
 
-    //region Metodos Privados
+    //region Constructor
+
+    /**
+     * Constructor de la aplicacion
+     */
+    public HelloApplication() {
+    }
+
+    //endregion
+
+    //region Metodos Publicos
 
     /**
      * Método principal de la aplicación.

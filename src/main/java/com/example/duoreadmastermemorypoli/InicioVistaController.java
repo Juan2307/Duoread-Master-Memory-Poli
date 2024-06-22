@@ -22,9 +22,22 @@ import java.util.Optional;
  */
 public class InicioVistaController extends Application {
 
+    //region Constructor
+
+    /**
+     * Constructor del controlador InicioVistaController
+     */
+    public InicioVistaController() {
+    }
+
+    //endregion
+
     //region Campos Privados
 
-    private Alert alert; // Alerta utilizada para confirmar la salida del juego
+    /**
+     * Alerta utilizada para confirmar la salida del juego
+     */
+    private Alert alert;
 
     //endregion
 
