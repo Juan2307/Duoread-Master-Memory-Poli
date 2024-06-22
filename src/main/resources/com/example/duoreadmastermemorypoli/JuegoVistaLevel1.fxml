@@ -25,7 +25,8 @@
                   prefWidth="755.0"/>
 
         <!-- Botón para ir al Lobby -->
-        <Button fx:id="btnLobby" mnemonicParsing="false" onAction="#volverLobby" text="⭠"/>
+        <Button fx:id="btnLobby" defaultButton="true" layoutX="21.0" layoutY="21.0" mnemonicParsing="false"
+                onAction="#volverLobby" text="⭠"/>
 
         <!-- Panel y botones para el mensaje "Time Over" -->
         <Pane fx:id="paneMensaje" cache="true" cacheHint="DEFAULT" layoutX="172.0" layoutY="230.0" maxHeight="-1.0"

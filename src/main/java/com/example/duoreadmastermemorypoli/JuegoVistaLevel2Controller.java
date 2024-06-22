@@ -28,110 +28,115 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Controlador para el nivel 2 del juego de memorama.
+ * Extiende la clase Application de JavaFX.
+ */
 public class JuegoVistaLevel2Controller extends Application {
 
     //region Campos Privados
 
-    private Timeline timeline;
-    private int tiempoRestante;
-    private List<String> imagenes;
-    private List<Button> botonesCartas;
-    private List<Button> cartasVolteadas;
-    private int parejasRestantes;
-    private boolean enProcesoDeComparacion = false;
+    public Timeline timeline; // Línea de tiempo para el temporizador del juego
+    public int tiempoRestante; // Tiempo restante en el temporizador
+    public List<String> imagenes; // Lista de rutas de las imágenes de las cartas
+    public List<Button> botonesCartas; // Lista de botones que representan las cartas
+    public List<Button> cartasVolteadas; // Lista de cartas que están volteadas actualmente
+    public int parejasRestantes; // Número de parejas restantes para completar el nivel
+    public boolean enProcesoDeComparacion = false; // Indicador de si hay una comparación en proceso
 
     @FXML
-    public Label lblTitulo;
+    public Label lblTiempo; // Etiqueta para mostrar el tiempo restante
 
     @FXML
-    public Label lblTiempo;
+    public GridPane gridCartas; // GridPane que contiene las cartas
 
     @FXML
-    public GridPane gridCartas;
+    public Pane paneMensaje; // Pane para mostrar mensajes al jugador
 
     @FXML
-    public Pane paneMensaje;
+    public Label lblMensaje; // Etiqueta para mostrar mensajes al jugador
 
     @FXML
-    public Label lblMensaje;
+    public Button btnReiniciar; // Botón para reiniciar el juego
 
     @FXML
-    public Button btnReiniciar;
+    public Button btnIrLobby; // Botón para volver al lobby
 
     @FXML
-    public Button btnIrLobby;
+    public Button btnLobby; // Otro botón para volver al lobby (posiblemente redundante)
 
     @FXML
-    public Button btnSiguienteNivel;
+    public Button btnSiguienteNivel; // Botón para ir al siguiente nivel
 
     @FXML
-    public Font x1;
+    public Label lblTitulo; // Etiqueta para mostrar el título del nivel
 
     @FXML
-    public Button btnLobby;
-
-    @FXML
-    public Pane rootPane;
+    public Font x1; // Fuente (no usada explícitamente en el código proporcionado)
 
     //endregion
 
     //region Metodos Publicos
 
+    /**
+     * Método que se llama al inicializar el controlador.
+     */
     public void initialize() {
-        iniciarTimerPreJuego();
-        cargarImagenes();
+        iniciarTimerPreJuego(); // Inicia el temporizador previo al juego
+        cargarImagenes(); // Carga las imágenes para las cartas
     }
 
     @Override
     public void start(Stage primaryStage) {
-
+        // Método requerido por la clase Application, pero no utilizado en este controlador
     }
 
+    /**
+     * Método para volver al lobby.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     public void volverLobby(ActionEvent event) {
-
         Platform.runLater(() -> {
-
             try {
-
+                // Crear una alerta de confirmación para volver al lobby
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Lobby");
                 alert.setHeaderText("¿Desea volver al lobby?");
-
                 ButtonType buttonTypeYes = new ButtonType("Sí");
                 ButtonType buttonTypeNo = new ButtonType("No");
-
                 alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == buttonTypeYes) {
-
+                    // Si el usuario confirma, cargar la vista del lobby
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InicioVista.fxml"));
                     Pane ventana = fxmlLoader.load();
                     Scene scene = new Scene(ventana);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
-
                 }
-
             } catch (IOException ex) {
+                // Manejar errores de carga del archivo FXML
                 System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
                 ex.printStackTrace();
             } catch (Exception ex) {
+                // Manejar cualquier otro error inesperado
                 System.err.println("Error inesperado: " + ex.getMessage());
                 ex.printStackTrace();
             }
-
         });
-
     }
 
+    /**
+     * Método para reiniciar el juego.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     public void reiniciarJuego(ActionEvent event) {
-
         Platform.runLater(() -> {
             try {
+                // Cargar la vista del nivel 2 nuevamente
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel2.fxml"));
                 Pane ventana = fxmlLoader.load();
                 Scene scene = new Scene(ventana);
@@ -139,21 +144,26 @@ public class JuegoVistaLevel2Controller extends Application {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
+                // Manejar errores de carga del archivo FXML
                 System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
                 ex.printStackTrace();
             } catch (Exception ex) {
+                // Manejar cualquier otro error inesperado
                 System.err.println("Error inesperado: " + ex.getMessage());
                 ex.printStackTrace();
             }
         });
     }
 
+    /**
+     * Método para ir al siguiente nivel.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     public void irASiguienteNivel(ActionEvent event) {
-
         Platform.runLater(() -> {
             try {
-
+                // Cargar la vista del nivel 3
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JuegoVistaLevel3.fxml"));
                 Pane ventana = fxmlLoader.load();
                 Scene scene = new Scene(ventana);
@@ -161,50 +171,52 @@ public class JuegoVistaLevel2Controller extends Application {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
+                // Manejar errores de carga del archivo FXML
                 System.err.println("Error cargando el archivo FXML: " + ex.getMessage());
                 ex.printStackTrace();
             } catch (Exception ex) {
+                // Manejar cualquier otro error inesperado
                 System.err.println("Error inesperado: " + ex.getMessage());
                 ex.printStackTrace();
             }
         });
-
     }
 
     //endregion
 
     //region Metodos Privados
 
-    private void iniciarTimerPreJuego() {
+    /**
+     * Método para iniciar el temporizador previo al juego.
+     */
+    void iniciarTimerPreJuego() {
+        lblTitulo.setText("NIVEL 2"); // Establecer el título del nivel
+        tiempoRestante = 4; // Tiempo de pre-juego en segundos
 
-        lblTitulo.setText("NIVEL 2");
-        tiempoRestante = 4;
-
+        // Crear una línea de tiempo para el temporizador
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-
-            tiempoRestante--;
+            tiempoRestante--; // Decrementar el tiempo restante
 
             if (tiempoRestante <= 0) {
-
-                timeline.stop();
-                iniciarJuego();
-                iniciarTimer();
+                timeline.stop(); // Detener el temporizador
+                iniciarJuego(); // Iniciar el juego
+                iniciarTimer(); // Iniciar el temporizador del juego
                 return;
-
             }
 
-            lblTiempo.setText("Tiempo: " + tiempoRestante);
-
+            lblTiempo.setText("Tiempo: " + tiempoRestante); // Actualizar la etiqueta de tiempo
         }));
-        timeline.setCycleCount(tiempoRestante); // Cambiado a 4 para que se muestren 3 segundos
-        timeline.play();
+        timeline.setCycleCount(tiempoRestante); // Establecer el número de ciclos del temporizador
+        timeline.play(); // Iniciar la línea de tiempo
 
         // Deshabilitar la interacción con la interfaz durante el contador de prejuego
         gridCartas.setDisable(true);
         paneMensaje.setDisable(true);
-
     }
 
+    /**
+     * Método para cargar las imágenes de las cartas.
+     */
     private void cargarImagenes() {
 
         imagenes = new ArrayList<>();
@@ -221,18 +233,22 @@ public class JuegoVistaLevel2Controller extends Application {
 
         // Duplicar las imágenes para tener las parejas
         imagenes.addAll(imagenes);
-        Collections.shuffle(imagenes);
+        Collections.shuffle(imagenes);  // Mezclar las imágenes
 
     }
 
+    /**
+     * Método para iniciar el juego.
+     */
     private void iniciarJuego() {
         cartasVolteadas = new ArrayList<>();
         botonesCartas = new ArrayList<>();
-        parejasRestantes = imagenes.size() / 2;
+        parejasRestantes = imagenes.size() / 2; // Inicializar el número de parejas restantes
 
         // Habilitar la interacción con las cartas
         gridCartas.setDisable(false);
 
+        // Crear y agregar las cartas al GridPane
         for (int i = 0; i < imagenes.size(); i++) {
             // Crear un StackPane para cada carta
             StackPane stackPane = new StackPane();
@@ -255,26 +271,30 @@ public class JuegoVistaLevel2Controller extends Application {
             final int indice = i;
             carta.setOnAction(event -> {
                 try {
-                    voltearCarta(carta, imageViewPorDefecto, indice);
+                    voltearCarta(carta, imageViewPorDefecto, indice); // Voltear la carta al hacer clic
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             });
 
-            botonesCartas.add(carta);
-
-            gridCartas.add(carta, i % 5, i / 5);
+            botonesCartas.add(carta); // Agregar la carta a la lista de botones
+            gridCartas.add(carta, i % 5, i / 5); // Agregar la carta al GridPane
         }
     }
 
+    /**
+     * Método para voltear una carta.
+     * @param carta El botón que representa la carta.
+     * @param imageViewPorDefecto El ImageView con la imagen por defecto de la carta.
+     * @param indice El índice de la carta en la lista de imágenes.
+     * @throws IOException Si ocurre un error de entrada/salida.
+     */
     private void voltearCarta(Button carta, ImageView imageViewPorDefecto, int indice) throws IOException {
-
         if (enProcesoDeComparacion) {
-            return;
+            return; // Si hay una comparación en proceso, no hacer nada
         }
 
-        // Deshabilitar la carta temporalmente
-        carta.setDisable(true);
+        carta.setDisable(true); // Deshabilitar la carta temporalmente
 
         // Crear el ImageView con la imagen correspondiente
         String rutaImagen = imagenes.get(indice);
@@ -289,11 +309,10 @@ public class JuegoVistaLevel2Controller extends Application {
         ImageView imageView = new ImageView(new Image(imagenUrl.toString()));
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
-
-        // Tamaño fijo para la imagen de la carta volteada
         imageView.setFitWidth(80);
         imageView.setFitHeight(80);
 
+        // Animación de rotación para voltear la carta
         RotateTransition rotacion1 = new RotateTransition(Duration.seconds(0.5), carta);
         rotacion1.setAxis(Rotate.Y_AXIS);
         rotacion1.setFromAngle(0);
@@ -314,17 +333,17 @@ public class JuegoVistaLevel2Controller extends Application {
             stackPane.getChildren().clear(); // Limpiar el StackPane
             stackPane.getChildren().add(imageView);
 
-            // Verificar si la carta está en la lista de cartas volteadas
-            cartasVolteadas.add(carta);
+            cartasVolteadas.add(carta); // Agregar la carta a la lista de cartas volteadas
+
             if (cartasVolteadas.size() == 2) {
-                enProcesoDeComparacion = true;
+                enProcesoDeComparacion = true; // Marcar que se está realizando una comparación
                 String rutaPrimeraCarta = (String) cartasVolteadas.get(0).getUserData();
                 String rutaSegundaCarta = rutaImagen;
 
                 if (rutaPrimeraCarta.equals(rutaSegundaCarta)) {
-                    // Las cartas coinciden
+                    // Si las cartas coinciden
                     for (Button cartaVolteada : cartasVolteadas) {
-                        cartaVolteada.setDisable(true);
+                        cartaVolteada.setDisable(true); // Deshabilitar las cartas coincididas
                     }
                     cartasVolteadas.clear();
                     parejasRestantes--;
@@ -332,35 +351,41 @@ public class JuegoVistaLevel2Controller extends Application {
                     if (parejasRestantes == 0) {
                         try {
                             timeline.stop(); // Detener el temporizador
-                            mostrarMensaje("¡Felicidades!", "Has ganado el juego.", true);
+                            mostrarMensaje("¡Felicidades!", "Has ganado el juego.", true); // Mostrar mensaje de victoria
                         } catch (IOException ex) {
-                            Logger.getLogger(JuegoVistaLevel2Controller.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(JuegoVistaLevel1Controller.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 } else {
-                    // Las cartas no coinciden
+                    // Si las cartas no coinciden
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
                         for (Button cartaVolteada : cartasVolteadas) {
                             cartaVolteada.setDisable(false);
                             StackPane sp = (StackPane) cartaVolteada.getGraphic();
                             sp.getChildren().clear(); // Limpiar el StackPane
-                            sp.getChildren().add(imageViewPorDefecto);
+                            sp.getChildren().add(imageViewPorDefecto); // Restaurar la imagen por defecto
                         }
                         cartasVolteadas.clear();
                         enProcesoDeComparacion = false;
                     }));
-                    timeline.play();
+                    timeline.play(); // Iniciar la línea de tiempo para restaurar las cartas
                 }
             } else {
-                carta.setUserData(rutaImagen);
+                carta.setUserData(rutaImagen); // Establecer los datos de la carta volteada
             }
         });
-        volteo.play();
+        volteo.play(); // Iniciar la animación de volteo
     }
 
+    /**
+     * Método para mostrar un mensaje al jugador.
+     * @param titulo El título del mensaje.
+     * @param mensaje El contenido del mensaje.
+     * @param esVictoria Indicador de si el mensaje es de victoria.
+     * @throws IOException Si ocurre un error de entrada/salida.
+     */
     private void mostrarMensaje(String titulo, String mensaje, boolean esVictoria) throws IOException {
-
-        lblMensaje.setText(mensaje);
+        lblMensaje.setText(mensaje); // Establecer el mensaje
         lblMensaje.setStyle("-fx-font-weight: bold;"); // Negrita para el mensaje
 
         paneMensaje.setDisable(false);
@@ -375,33 +400,30 @@ public class JuegoVistaLevel2Controller extends Application {
             btnSiguienteNivel.setVisible(false); // Ocultar el botón para ir al siguiente nivel
         }
 
-        gridCartas.setDisable(true);
+        gridCartas.setDisable(true); // Deshabilitar la interacción con las cartas
         btnReiniciar.setDisable(false);
         btnIrLobby.setDisable(false);
-
     }
 
+    /**
+     * Método para iniciar el temporizador del juego.
+     */
     private void iniciarTimer() {
-
-        tiempoRestante = 61; // Cambiado a 61 para iniciar desde 60 segundos
+        tiempoRestante = 61; // Iniciar desde 60 segundos
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-
-            tiempoRestante--;
-            lblTiempo.setText("Tiempo: " + tiempoRestante);
+            tiempoRestante--; // Decrementar el tiempo restante
+            lblTiempo.setText("Tiempo: " + tiempoRestante); // Actualizar la etiqueta de tiempo
             if (tiempoRestante <= 0) {
-                timeline.stop();
+                timeline.stop(); // Detener el temporizador
                 try {
-                    mostrarMensaje("¡Time Over!", "Se acabó el tiempo. ¡Inténtalo de nuevo!", false);
+                    mostrarMensaje("¡Time Over!", "Se acabó el tiempo. ¡Inténtalo de nuevo!", false); // Mostrar mensaje de tiempo agotado
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
-
         }));
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-
+        timeline.setCycleCount(Timeline.INDEFINITE); // Ejecutar indefinidamente
+        timeline.play(); // Iniciar la línea de tiempo
     }
 
     //endregion
